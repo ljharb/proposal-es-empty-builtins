@@ -10,7 +10,7 @@ Similarly, developers may use `Array.prototype` as a placeholder for an empty Ar
 
 In ES6, TC39 has attempted to change builtin prototype objects to normal objects, as opposed to the pre-ES6 behavior where `X.prototype` is also an `X` - however, for `Function.prototype` and `Array.prototype`, at least, this turned out to be [problematic](https://esdiscuss.org/topic/array-prototype-change-was-tostringtag-spoofing-for-null-and-undefined).
 
-This was also discussed on [es-discuss](https://esdiscuss.org/topic/empty-idea).
+This has been discussed on [es-discuss](https://esdiscuss.org/topic/empty-idea) [multiple](https://esdiscuss.org/topic/my-ecmascript-7-wishlist) times.
 
 ## Proposed Solution
 We propose creating a nonconfigurable, non-writable, non-enumerable `empty` property on the following builtins:
