@@ -16,7 +16,7 @@ This has been discussed on [es-discuss](https://esdiscuss.org/topic/empty-idea) 
 We propose creating a nonconfigurable, non-writable, non-enumerable `empty` property on the following builtins:
  - `Function.empty`, polyfilled as `(function () { var f = function empty() {}; f.prototype = Object.empty; Object.defineProperty(f, 'length', { configurable: false }); Object.defineProperty(f, 'name', { configurable: false }); return Object.freeze(f); }())`: a function that is empty of operations, ie, a "no-op".
  - `String.empty` as `''` - an empty string
- - `RegExp.empty` as `Object.freeze(/(?:)/)` - a regular expression empty of matches
+ - `RegExp.empty` as `(function () { var r = /(?:)/; var flagsDescriptor = Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags'); if (flagsDescriptor) { flagsDescriptor.configurable = false; Object.defineProperty(r, 'flags', flagsDescriptor); } return Object.freeze(r); }())` - a regular expression empty of matches
  - `Object.empty` as `Object.freeze(Object.create(null))` - an empty object
  - `Promise.empty` as `Object.freeze(new Promise(Function.empty))` - an empty promise :-)
  - `Date.empty` as `Object.freeze(new Date(0))` - a date empty of seconds since the epoch
