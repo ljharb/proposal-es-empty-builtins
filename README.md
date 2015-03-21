@@ -17,13 +17,18 @@ We propose creating a nonconfigurable, non-writable, non-enumerable `empty` prop
  - `Function.empty`, polyfilled as `(function () { var f = function empty() {}; f.prototype = Object.empty; Object.defineProperty(f, 'length', { configurable: false }); Object.defineProperty(f, 'name', { configurable: false }); return Object.freeze(f); }())`: a function that is empty of operations, ie, a "no-op".
  - `String.empty` as `''` - an empty string
  - `RegExp.empty` as `(function () { var r = /(?:)/; var flagsDescriptor = Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags'); if (flagsDescriptor) { flagsDescriptor.configurable = false; Object.defineProperty(r, 'flags', flagsDescriptor); } return Object.freeze(r); }())` - a regular expression empty of matches
+  - **note**: `RegExp.prototype.compile.call(RegExp.empty)` can still be used to mutate `RegExp.empty`.
  - `Object.empty` as `Object.freeze(Object.create(null))` - an empty object
  - `Promise.empty` as `Object.freeze(new Promise(Function.empty))` - an empty promise :-)
  - `Date.empty` as `Object.freeze(new Date(0))` - a date empty of seconds since the epoch
- - `Map.empty` as `Object.freeze(new Map())` - a map empty of entries (*note*: this does not make an immutable Map: revisit)
- - `Set.empty` as `Object.freeze(new Set())` - a set empty of values (*note*: this does not make an immutable Set: revisit)
- - `WeakMap.empty` as `Object.freeze(new WeakMap())` - a weak map empty of entries (*note*: this does not make an immutable WeakMap: revisit)
- - `WeakSet.empty` as `Object.freeze(new WeakSet())` - a weak set empty of values (*note*: this does not make an immutable WeakSet: revisit)
+ - `Map.empty` as `Object.freeze(new Map())` - a map empty of entries
+  - **note**: this does not make an immutable Map: revisit
+ - `Set.empty` as `Object.freeze(new Set())` - a set empty of values
+  - **note**: this does not make an immutable Set: revisit
+ - `WeakMap.empty` as `Object.freeze(new WeakMap())` - a weak map empty of entries
+  - **note**: this does not make an immutable WeakMap: revisit
+ - `WeakSet.empty` as `Object.freeze(new WeakSet())` - a weak set empty of values
+  - *note*: this does not make an immutable WeakSet: revisit
  - `Array.empty` as `Object.freeze([])`, an array that is empty of items.
  - `Int8Array.empty` as `Object.freeze(new Int8Array(0))`, an Int8Array that is empty of items
  - `Int16Array.empty` as `Object.freeze(new Int16Array(0))`, an Int16Array that is empty of items
