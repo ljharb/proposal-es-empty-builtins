@@ -2,7 +2,7 @@
 
 ## Status
 
-This proposal is officially in stage 0 (strawman) of [the TC39 process](https://docs.google.com/document/d/1QbEE0BsO4lvl7NFTn5WXWeiEIBfaVUF7Dk0hpPpPDzU).
+This proposal was clearly rejected in pre-committee discussions, and never entered stage 0 of the [TC39 process](https://github.com/tc39/process-document).
 
 ## Motivation
 Often, developers use a "no-op" function (`function () {}`) as an initial or placeholder value for a callback, or for a function that a subclass must implement, etc. Some developers have used `Function.prototype` for this purpose, which is a fast and simple builtin no-op function (one example [JSPerf](http://jsperf.com/noop-method-approaches/2)).
